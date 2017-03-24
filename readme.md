@@ -51,16 +51,16 @@ and a simple way of pairing up players
 
 ## Installation
 
-> The installation instructions are low priority in the readme and should come at the bottom. The first part answers all their objections and now that they want to use it, show them how.
 
 1. If you do not already have Vagrant and VirtualBox, install them from the links below:
   * Install Vagrant from https://www.vagrantup.com/
   * Install VirtualBox from https://www.virtualbox.org/
 2. Clone this repo to your local machine & cd to  the directory of the cloned repo
 3. Run `vagrant up` to get your virtual machine up and running and `vagrant ssh` to connect
-4. Change directories to the "tournament" directory
+4. Change directories to the "tournament" directory where tournament.sql, tournament.py, and tournament_test.py are located
 5. run `psql` to open the postgreSQL command prompt
 6. run `\i tournament.sql` to create the database and tables
 7. run `'\c` to connect
 
+Check to see if your tables were created using `\dv`. If not, trying repeating steps 6 & 7. 
 From here you can run `python tournament_test.py` to check to see if the code passes the unit tests. 
