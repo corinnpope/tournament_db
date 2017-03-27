@@ -1,12 +1,8 @@
 -- Table definitions for the tournament project.
---
--- Put your SQL 'create table' statements in this file; also 'create view'
--- statements if you choose to use it.
---
--- You can write comments in this file by starting them with two dashes, like
--- these lines here.
-
 -- Make sure the tables don't exist to avoid duplicates and errors
+
+-- The database connection should be declared prior creating the db structure. 
+\c tournament;
 
 DROP DATABASE IF EXISTS tournament;
 
@@ -42,5 +38,3 @@ SELECT players.id AS id, players.name AS name,
 (SELECT count(*) FROM matches WHERE players.id in (winner, loser)) AS matches
 FROM players GROUP BY players.id ORDER BY wins DESC;
 
--- Connect
-\c tournament;

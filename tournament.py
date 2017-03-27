@@ -10,6 +10,16 @@ def connect():
     """Connect to the PostgreSQL database.  Returns a database connection."""
     return psycopg2.connect("dbname=tournament")
 
+# tried this according to comments in last review, but kept getting a 
+# "TypeError: 'NoneType' object is not iterable" error
+# def connect(database_name="tournament"):
+#     try:
+#         conn = psycopg2.connect("dbname={}".format(database_name))
+#         db_cursor = db.cursor()
+#         return conn, db_cursor
+#     except:
+#         print("error connecting to the database")
+
 
 def deleteMatches():
     """Remove all the match records from the database."""
@@ -54,7 +64,9 @@ def registerPlayer(name):
     """
     conn = connect()
     db_cursor = conn.cursor()
-    db_cursor.execute("INSERT INTO players (name) VALUES (%s)", (name,))
+    query = "INSERT INTO players (name) VALUES (%s);"
+    params = (name,)
+    db_cursor.execute(query, params)
     conn.commit()
     conn.close()
 
@@ -92,10 +104,9 @@ def reportMatch(winner, loser):
     db_cursor = conn.cursor()
     # using db_cursor.execute (query) gives TypeError: argument 1 must be
     # a string or unicode object
-    db_cursor.execute(
-        "INSERT INTO matches (winner, loser)VALUES (%s , %s)", (winner, loser,)
-        )
-
+    query = "INSERT INTO matches (winner, loser)VALUES (%s , %s)"
+    params = (winner, loser,)
+    db_cursor.execute(query, params)
     conn.commit()
     conn.close()
     # no need to return anything. Just commit
