@@ -1,8 +1,7 @@
 -- Table definitions for the tournament project.
 -- Make sure the tables don't exist to avoid duplicates and errors
 
--- The database connection should be declared prior creating the db structure. 
-\c tournament;
+
 
 DROP DATABASE IF EXISTS tournament;
 
@@ -12,6 +11,9 @@ DROP TABLE IF EXISTS players;
 -- Let's start making the database
 
 CREATE DATABASE TOURNAMENT;
+
+-- The database connection should be declared prior creating the db structure. 
+\c tournament;
 
 -- Now the tables
 

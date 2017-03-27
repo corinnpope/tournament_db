@@ -10,16 +10,6 @@ def connect():
     """Connect to the PostgreSQL database.  Returns a database connection."""
     return psycopg2.connect("dbname=tournament")
 
-# tried this according to comments in last review, but kept getting a 
-# "TypeError: 'NoneType' object is not iterable" error
-# def connect(database_name="tournament"):
-#     try:
-#         conn = psycopg2.connect("dbname={}".format(database_name))
-#         db_cursor = db.cursor()
-#         return conn, db_cursor
-#     except:
-#         print("error connecting to the database")
-
 
 def deleteMatches():
     """Remove all the match records from the database."""
@@ -49,7 +39,7 @@ def countPlayers():
     db_cursor.execute(query)
     # no need to commit if we're not inserting
     # get rows from db     # why rows[0][0]???
-    rows = db_cursor.fetchall()[0][0]
+    rows = db_cursor.fetchone()[0]
     conn.close()
     # return the number of players registered
     return rows
